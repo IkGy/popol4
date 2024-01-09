@@ -29,6 +29,8 @@ function QQNA() {
         });
     };
 
+    
+
     return (
         <>
             <div className='kk_help_container'>

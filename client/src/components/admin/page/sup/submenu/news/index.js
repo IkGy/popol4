@@ -137,11 +137,11 @@ function News(){
                             </tr>
                         </thead>
                         <tbody>
-                            {Array.isArray(displayedPosts) && displayedPosts.map(item => (
+                            {Array.isArray(displayedPosts) && displayedPosts.map((item, index) => (
                                 <React.Fragment key={item.id}>
                                     <tr className='KJH_news_contents_section' onClick={() => toggleContent(item.id)}>
-                                        <td className='KJH_news_contents_id'>{item.id}</td>
-                                        <td className='KJH_news_contents_title' >{item.title}</td>
+                                        <td className='KJH_news_contents_id'>{index + 1}</td>
+                                        <td className='KJH_news_contents_title'>{item.title}</td>
                                         <td className='KJH_news_contents_created'>{formatDate(item.createdAt)}</td>
                                         <td className='KJH_news_contents_ctrl'>
                                             <span className='KJH_news_contents_ans'>

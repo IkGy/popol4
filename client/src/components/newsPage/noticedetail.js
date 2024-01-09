@@ -8,26 +8,36 @@ function Noticedetail() {
   const { id } = useParams();
   const [data, setData] = useState("")
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hour = String(date.getHours()).padStart(2, '0');
+    const minute = String(date.getMinutes()).padStart(2, '0');
+
+    return `${year}년 ${month}월 ${day}일 ${hour}:${minute}`;
+  };
+
   useEffect(() => {
     axios
       .get(`${API_URL}/board/news`, {params: {id: id}})
       .then((res) => {
-        console.log("db조회 완료");
-        console.log(res.data);
+        // console.log("db조회 완료");
+        // console.log(res.data);
         setData(res.data);
       })
       .catch((err) => {
         console.error(err);
-        console.log("실패");
+        // console.log("실패");
       });
   }, []);
 
-  console.log(id);
   return (
     <div className="n_1_all">
       <div className="n_1_title">
         <h3>{data.title}</h3>
-        <p>{data.updated_at}</p>
+        <p>{formatDate(data.updated_at)}</p>
       </div>
       <div className="n_1_image">
         <img src={API_URL+"/upload/"+data.image_url}></img>
